@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.b31de2a6f5238bcf571c08bdc8f298d6.js"
+  "/precache-manifest.d06c9f114bedae56be77e180dc98aeeb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "HockeyStats"});
