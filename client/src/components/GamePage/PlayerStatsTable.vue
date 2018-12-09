@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="player in awayPlayersByName"
-                    v-if="player.stats.goalieStats && player.stats.goalieStats.timeOnIce"
+                    v-if="player.stats.goalieStats && player.stats.goalieStats.timeOnIce != '0:00'"
                     :key="player.person.id">
                         <td>{{ player.person.fullName }}</td>
                         <td>{{ player.stats.goalieStats.timeOnIce }}</td>
@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="player in homePlayersByName"
-                    v-if="player.stats.goalieStats && player.stats.goalieStats.timeOnIce"
+                    v-if="player.stats.goalieStats && player.stats.goalieStats.timeOnIce != '0:00'"
                     :key="player.person.id">
                         <td>{{ player.person.fullName }}</td>
                         <td>{{ player.stats.goalieStats.timeOnIce }}</td>
