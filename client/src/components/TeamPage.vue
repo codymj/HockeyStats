@@ -1,10 +1,12 @@
 <template>
 <div class="container">
     <div class="row">
-        <div class="col-sm-1">
-            <img id="logo" :src='"../assets/teamLogos/"+team+".png"'>
+        <div class="col-sm-2">
+            <a :href="teamInfo.officialSiteUrl">
+                <img id="logo" :src='"../assets/teamLogos/"+team+".png"'>
+            </a>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <h1 id="teamName">{{ teamInfo.name }}</h1>
         </div>
     </div>
@@ -53,7 +55,7 @@ export default {
     },
     methods: {
         getJsonTeamInfo() {
-            let url = 'https://statsapi.web.nhl.com/api/v1//teams/';
+            let url = 'https://statsapi.web.nhl.com/api/v1/teams/';
             url += this.abbrToId[this.team];
 
             this.axios.get(url).then((response) => {
