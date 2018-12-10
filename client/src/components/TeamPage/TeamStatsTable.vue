@@ -9,16 +9,16 @@
         <tr>
             <td></td>
             <td>{{ stats[0].stat.pts }}</td>
-            <td>{{ stats[0].stat.ptPctg }}</td>
+            <td>{{ stats[0].stat.ptPctg.toFixed(2) }}</td>
             <td>{{ stats[0].stat.goalsPerGame.toFixed(2) }}</td>
             <td>{{ stats[0].stat.goalsAgainstPerGame.toFixed(2) }}</td>
-            <td>{{ stats[0].stat.powerPlayPercentage }}</td>
+            <td>{{ stats[0].stat.powerPlayPercentage.toFixed(2) }}</td>
             <td>{{ stats[0].stat.penaltyKillPercentage }}</td>
             <td>{{ stats[0].stat.shotsPerGame.toFixed(2) }}</td>
             <td>{{ stats[0].stat.shotsAllowed.toFixed(2) }}</td>
-            <td>{{ stats[0].stat.faceOffWinPercentage }}</td>
-            <td>{{ stats[0].stat.shootingPctg }}</td>
-            <td>{{ stats[0].stat.savePctg }}</td>
+            <td>{{ stats[0].stat.faceOffWinPercentage.toFixed(2) }}</td>
+            <td>{{ stats[0].stat.shootingPctg.toFixed(2) }}</td>
+            <td>{{ stats[0].stat.savePctg.toFixed(3) }}</td>
         </tr>
         <tr>
             <td><strong>Rank</strong></td>
