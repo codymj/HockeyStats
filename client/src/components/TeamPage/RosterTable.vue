@@ -1,22 +1,52 @@
 <template>
-<table class="table table-sm">
-    <thead>
-        <tr>
-            <th v-for="header in headers">{{ header }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr v-for="player in roster">
-            <td>{{ player.person.fullName }}</td>
-            <td>{{ player.jerseyNumber }}</td>
-            <td>{{ player.position.name }}</td>
-        </tr>
-    </tbody>
-</table>
+<div v-if="roster">
+    <div class="row">
+        <div v-for="player in centers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
+            <PlayerItem
+            :name="player.person.fullName" 
+            :number="player.jerseyNumber"
+            :position="player.position.name"
+            />
+        </div>
+        <div v-for="player in lWingers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
+            <PlayerItem
+            :name="player.person.fullName" 
+            :number="player.jerseyNumber"
+            :position="player.position.name"
+            />
+        </div>
+        <div v-for="player in rWingers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
+            <PlayerItem
+            :name="player.person.fullName" 
+            :number="player.jerseyNumber"
+            :position="player.position.name"
+            />
+        </div>
+        <div v-for="player in dMen" :key="player.jerseyNumber" class="col-sm-2 playerItem">
+            <PlayerItem
+            :name="player.person.fullName" 
+            :number="player.jerseyNumber"
+            :position="player.position.name"
+            />
+        </div>
+        <div v-for="player in goalies" :key="player.jerseyNumber" class="col-sm-2 playerItem">
+            <PlayerItem
+            :name="player.person.fullName" 
+            :number="player.jerseyNumber"
+            :position="player.position.name"
+            />
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
+import PlayerItem from './PlayerItem';
+
 export default {
+    components: {
+        PlayerItem
+    },
     props: {
         teamId: null
     },
@@ -25,7 +55,12 @@ export default {
             
             headers: ['Name', '#', 'Position'],
             jsonRoster: null,
-            roster: Array()
+            roster: Array(),
+            centers: Array(),
+            lWingers: Array(),
+            rWingers: Array(),
+            dMen: Array(),
+            goalies: Array()
         }
     },
     watch: {
@@ -49,6 +84,19 @@ export default {
         },
         parseJsonRoster(json) {
             this.roster = json.teams[0].roster.roster;
+            this.roster.forEach((player) => {
+                if(player.position.name == 'Center') {
+                    this.centers.push(player);
+                } else if(player.position.name == 'Left Wing') {
+                    this.lWingers.push(player);
+                } else if(player.position.name == 'Right Wing') {
+                    this.rWingers.push(player);
+                } else if(player.position.name == 'Defenseman') {
+                    this.dMen.push(player);
+                } else if(player.position.name == 'Goalie') {
+                    this.goalies.push(player);
+                }
+            });
         }
     }
 };
@@ -56,4 +104,8 @@ export default {
 
 <style scoped>
 @import '../css/table.css';
+
+.playerItem {
+    max-width: 12em;
+}
 </style>

@@ -1,20 +1,28 @@
 <template>
-<div class="container">
+<div v-if="stats" class="container">
     <div class="row">
         <div class="col-sm-2">
             <a :href="teamInfo.officialSiteUrl">
                 <img id="logo" :src='"../assets/teamLogos/"+team+".png"'>
             </a>
         </div>
-        <div class="col-sm-6">
-            <h1 id="teamName">{{ teamInfo.name }}</h1>
+        <div class="col-sm-10">
+            <h1 id="title">
+                {{ teamInfo.name }}
+                ({{ stats[0].stat.wins }}-{{ stats[0].stat.losses }}-{{ stats[0].stat.ot }})
+            </h1>
         </div>
     </div>
     <hr>
     <br>
-    <h3><strong>Roster</strong></h3>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
+            <TeamStatsTable :stats="stats" />
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
             <RosterTable :teamId="abbrToId[team]" />
         </div>
     </div>
@@ -23,10 +31,11 @@
 
 <script>
 import RosterTable from './TeamPage/RosterTable';
+import TeamStatsTable from './TeamPage/TeamStatsTable';
 
 export default {
     components: {
-        RosterTable
+        RosterTable, TeamStatsTable
     },
     props: {
         team: null
@@ -42,16 +51,22 @@ export default {
                 'CBJ': 29, 'MIN': 30, 'WPG': 52, 'ARI': 53, 'VKG': 54
             },
             jsonTeamInfo: null,
-            teamInfo: Object()
+            jsonStats: null,
+            teamInfo: Object(),
+            stats: Array()
         }
     },
     watch: {
         jsonTeamInfo(newData) {
             this.parseJsonTeamInfo(newData);
+        },
+        jsonStats(newData) {
+            this.parseJsonStats(newData);
         }
     },
     mounted() {
         this.getJsonTeamInfo();
+        this.getJsonStats();
     },
     methods: {
         getJsonTeamInfo() {
@@ -66,6 +81,19 @@ export default {
         },
         parseJsonTeamInfo(json) {
             this.teamInfo = json.teams[0];
+        },
+        getJsonStats() {
+            let url = 'https://statsapi.web.nhl.com/api/v1/teams/';
+            url += this.abbrToId[this.team] + '?expand=team.stats';
+
+            this.axios.get(url).then((response) => {
+                this.jsonStats = response.data;
+            }).catch((error) => {
+                console.log(error.message);
+            });
+        },
+        parseJsonStats(json) {
+            this.stats = json.teams[0].teamStats[0].splits;
         }
     }
 };
@@ -77,7 +105,7 @@ export default {
 #logo {
     width: 64px;
 }
-#teamName {
+#title {
     padding-top: 0.25em;
 }
 
