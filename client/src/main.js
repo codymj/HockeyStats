@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-//import './registerServiceWorker';
+import './registerServiceWorker';
 import bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 Vue.use(VueAxios, axios);
