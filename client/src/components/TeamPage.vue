@@ -15,10 +15,8 @@
     </div>
     <hr>
     <br>
-    <div class="row">
-        <div class="col-sm-12">
-            <TeamStatsTable :stats="stats" />
-        </div>
+    <div>
+        <TeamStatsTable :stats="stats" />
     </div>
     <br>
     <div class="row">
@@ -53,7 +51,7 @@ export default {
             jsonTeamInfo: null,
             jsonStats: null,
             teamInfo: Object(),
-            stats: Array()
+            stats: null
         }
     },
     watch: {
@@ -93,6 +91,7 @@ export default {
             });
         },
         parseJsonStats(json) {
+            this.stats = Array();
             this.stats = json.teams[0].teamStats[0].splits;
         }
     }

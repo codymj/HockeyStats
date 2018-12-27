@@ -2,11 +2,13 @@
 <div v-if="roster">
     <div class="row">
         <div v-for="player in centers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
+            <a :href="/player/+player.person.id">
             <PlayerItem
             :name="player.person.fullName" 
             :number="player.jerseyNumber"
             :position="player.position.name"
             />
+            </a>
         </div>
         <div v-for="player in lWingers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
             <PlayerItem
@@ -105,6 +107,9 @@ export default {
 <style scoped>
 @import '../css/table.css';
 
+a, a:hover {
+    text-decoration: none;
+}
 .playerItem {
     max-width: 12em;
 }
