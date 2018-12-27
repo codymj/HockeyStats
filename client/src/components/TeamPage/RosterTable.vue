@@ -3,40 +3,48 @@
     <div class="row">
         <div v-for="player in centers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
             <a :href="/player/+player.person.id">
-            <PlayerItem
-            :name="player.person.fullName" 
-            :number="player.jerseyNumber"
-            :position="player.position.name"
-            />
+                <PlayerItem
+                :name="player.person.fullName" 
+                :number="player.jerseyNumber"
+                :position="player.position.name"
+                />
             </a>
         </div>
         <div v-for="player in lWingers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
-            <PlayerItem
-            :name="player.person.fullName" 
-            :number="player.jerseyNumber"
-            :position="player.position.name"
-            />
+            <a :href="/player/+player.person.id">
+                <PlayerItem
+                :name="player.person.fullName" 
+                :number="player.jerseyNumber"
+                :position="player.position.name"
+                />
+            </a>
         </div>
         <div v-for="player in rWingers" :key="player.jerseyNumber" class="col-sm-2 playerItem">
-            <PlayerItem
-            :name="player.person.fullName" 
-            :number="player.jerseyNumber"
-            :position="player.position.name"
-            />
+            <a :href="/player/+player.person.id">
+                <PlayerItem
+                :name="player.person.fullName" 
+                :number="player.jerseyNumber"
+                :position="player.position.name"
+                />
+            </a>
         </div>
         <div v-for="player in dMen" :key="player.jerseyNumber" class="col-sm-2 playerItem">
-            <PlayerItem
-            :name="player.person.fullName" 
-            :number="player.jerseyNumber"
-            :position="player.position.name"
-            />
+            <a :href="/player/+player.person.id">
+                <PlayerItem
+                :name="player.person.fullName" 
+                :number="player.jerseyNumber"
+                :position="player.position.name"
+                />
+            </a>
         </div>
         <div v-for="player in goalies" :key="player.jerseyNumber" class="col-sm-2 playerItem">
-            <PlayerItem
-            :name="player.person.fullName" 
-            :number="player.jerseyNumber"
-            :position="player.position.name"
-            />
+            <a :href="/player/+player.person.id">
+                <PlayerItem
+                :name="player.person.fullName" 
+                :number="player.jerseyNumber"
+                :position="player.position.name"
+                />
+            </a>
         </div>
     </div>
 </div>
